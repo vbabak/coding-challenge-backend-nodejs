@@ -1,0 +1,14 @@
+node_modules
+
+yarn-error.log
+npm-debug.log
+
+.DS_Store
+*.orig
+
+.idea
+.vscode/launch.json
+.vscode/settings.json
+.npmrc
+
+dist/**
