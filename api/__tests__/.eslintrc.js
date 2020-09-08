@@ -15,5 +15,11 @@ module.exports = {
         alwaysAwait: true,
       },
     ],
+    'node/no-unpublished-import': [
+      'error',
+      {
+        allowModules: ['supertest'],
+      },
+    ],
   },
 }

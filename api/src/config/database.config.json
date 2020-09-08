@@ -1,0 +1,23 @@
+{
+    "production": {
+        "username": "dbuser",
+        "password": "dbpassword1",
+        "database": "bikes",
+        "host": "localhost",
+        "port": 3306,
+        "dialect": "mysql",
+        "benchmark": true,
+        "define": {
+            "charset": "utf8",
+            "collate": "utf8_general_ci",
+            "timestamps": false
+        },
+        "dialectOptions": {},
+        "migrationStorageTableName": "sequelize_meta"
+    },
+    "development": {
+    },
+    "test": {
+        "database": "bikes_test"
+    }
+}
