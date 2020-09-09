@@ -49,7 +49,7 @@
     "lint": "eslint . --ext .ts --max-warnings 0",
     "lint:fix": "yarn lint --fix",
     "makepretty": "prettier --write -l '**/*.ts'",
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:watch": "yarn test --watch"
   },
   "lint-staged": {

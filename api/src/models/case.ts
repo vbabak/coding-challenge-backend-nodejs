@@ -55,7 +55,8 @@ export default class Case extends DBModel {
         modelName: 'Case',
         tableName: 'case',
         indexes: [
-          { name: 'case_email_idx1', fields: ['email'], unique: true },
+          { name: 'case_email_idx1', fields: ['email'] },
+          { name: 'case_status_idx2', fields: ['status'] },
           { name: 'case_police_officer_id_fk1', fields: ['police_officer_id'] },
         ],
       }

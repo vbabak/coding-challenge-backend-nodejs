@@ -46,7 +46,11 @@ module.exports = {
     await queryInterface.addIndex('case', {
       name: 'case_email_idx1',
       fields: ['email'],
-      unique: true,
+    })
+
+    await queryInterface.addIndex('case', {
+      name: 'case_status_idx2',
+      fields: ['status'],
     })
 
     await queryInterface.addConstraint('case', {

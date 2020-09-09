@@ -5,6 +5,7 @@ import bodyParser from 'koa-bodyparser'
 import ApplicationError from './helpers/application-error'
 import dbmodels from './models/index'
 import casesroute from './routes/cases'
+import officersroute from './routes/officers'
 
 const app = new Koa()
 app.use(cors())
@@ -36,6 +37,7 @@ app.use(async (ctx, next) => {
 app.context.db = dbmodels
 
 casesroute(router)
+officersroute(router)
 app.use(router.routes())
 app.use(router.allowedMethods())
 
