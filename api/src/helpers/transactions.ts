@@ -16,5 +16,15 @@ const transactions = {
       await db.instance.query('ROLLBACK')
     }
   },
+  lock: async (name: string, db: DB): Promise<void> => {
+    await db.instance.query('SELECT GET_LOCK(:name, 10);', {
+      replacements: { name },
+    })
+  },
+  unlock: async (name: string, db: DB): Promise<void> => {
+    await db.instance.query('SELECT RELEASE_LOCK(:name);', {
+      replacements: { name },
+    })
+  },
 }
 export default transactions

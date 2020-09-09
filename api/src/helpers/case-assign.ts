@@ -25,6 +25,7 @@ const assignCase = async (
 
 const CaseAssign = {
   assignCase: async (case_id: number, db: DB): Promise<void> => {
+    await transactions.lock(`assignCase:${case_id}`, db)
     await transactions.start(db)
     const available_bikes = await db.instance.query(
       'SELECT id FROM `case` WHERE id = :case_id AND `status` = :status  AND police_officer_id IS NULL LIMIT 1 FOR UPDATE',
@@ -48,8 +49,10 @@ const CaseAssign = {
       await assignCase(case_id, officer_id, db)
     }
     await transactions.commit(db)
+    await transactions.unlock(`assignCase:${case_id}`, db)
   },
   assignOfficer: async (officer_id: number, db: DB): Promise<void> => {
+    await transactions.lock(`assignOfficer:${officer_id}`, db)
     await transactions.start(db)
     const available_cases = await db.instance.query(
       'SELECT id FROM `case` WHERE `status` = :status AND police_officer_id IS NULL LIMIT 1 FOR UPDATE',
@@ -73,6 +76,7 @@ const CaseAssign = {
       await assignCase(case_id, officer_id, db)
     }
     await transactions.commit(db)
+    await transactions.unlock(`assignOfficer:${officer_id}`, db)
   },
   resolveCase: async (
     case_id: number,
@@ -80,6 +84,7 @@ const CaseAssign = {
     status: string,
     db: DB
   ): Promise<void> => {
+    await transactions.lock(`resolveCase:${case_id}`, db)
     await transactions.start(db)
     const cases = await db.instance.query(
       'SELECT id FROM `case` WHERE `id` = :case_id LIMIT 1 FOR UPDATE',
@@ -114,6 +119,7 @@ const CaseAssign = {
       )
     }
     await transactions.commit(db)
+    await transactions.unlock(`resolveCase:${case_id}`, db)
   },
 }
 export default CaseAssign
