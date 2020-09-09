@@ -5,4 +5,8 @@ export default (router: Router): void => {
     ctx.status = 200
     ctx.body = { success: true }
   })
+  router.post('/cases', (ctx): void => {
+    ctx.status = 201
+    ctx.body = { success: true }
+  })
 }
